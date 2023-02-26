@@ -1,0 +1,22 @@
+module mux_cont_tb;
+   reg a, c, sel;
+   wire b;
+   mux_cont tb(.a(a), .b(b), .sel(sel), .c(c));
+   initial begin
+      a = 1; c = 0; sel = 0;
+      #10;
+      if (b !== 1) $display("Test 1 failed");
+      a = 0; c = 1; sel = 1;
+      #10;
+      if (b !== 1) $display("Test 2 failed");
+      a = 0; c = 0; sel = 0;
+      #10;
+      if (b !== 0) $display("Test 3 failed");
+      a = 1; c = 1; sel = 1;
+      #10;
+      if (b !== 1) $display("Test 4 failed");
+      
+      $display("All tests passed!");
+      $finish;
+   end
+endmodule
