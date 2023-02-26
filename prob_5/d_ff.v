@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module d_ff_behav(clk, d, q);
+module d_ff(clk, d, q);
   input clk, d;
   output q;
   reg q;
