@@ -1,4 +1,4 @@
-module sequence_detector_mealy(
+module sequence_detector_mealy_overlap_110110(
     input clk, rst, 
     input din,      
     output reg dout 
