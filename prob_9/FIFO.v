@@ -15,7 +15,6 @@ reg [31:0] mem [0:DEPTH-1];
 reg [9:0] wr_ptr;
 reg [9:0] rd_ptr;
 reg [9:0] count;
-wire [9:0] next_count;
 assign empty = (count == 0);
 assign full = (count == DEPTH);
 always @(posedge clk) begin
