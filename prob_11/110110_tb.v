@@ -1,37 +1,35 @@
-module sequence_detector_110110_tb;
+module sequence_detector_mealy_overlap_110110_tb;
+reg clk, rst, din;
+wire dout;
 
-  reg clk, reset, din;
-  wire dout;
-
-  sequence_decetor_110110 tb(
+sequence_detector_mealy_overlap_110110 tb(
     .clk(clk),
-    .reset(reset),
+    .rst(rst),
     .din(din),
     .dout(dout)
-  );
+);
 
-  initial begin
+initial begin
     clk = 0;
-    reset = 1;
-    din = 0;
-    #10 reset = 0;
-    #10 din = 1;
-    #5 din = 1;
-    #5 din = 0;
-    #5 din = 1;
-    #5 din = 1;
-    #5 din = 0;
-    #5 din = 1;
-    #5 din = 0;
-    #5 din = 1;
-    #5 din = 1;
-    #5 din = 0;
-    #5 din = 1;
-    #5 din = 0;
-    #5 din = 1;
-    #5 $stop;
-  end
+    forever #5 clk = ~clk;
+end
 
-  always #5 clk = ~clk;
+initial begin
+    rst = 1;
+    din = 0;
+    #10 rst = 0;
+    #10 din = 1;
+    #10 din = 1;
+    #10 din = 0;
+    #10 din = 1;
+    #10 din = 1;
+    #10 din = 0;
+    #100 $finish;
+end
+
+always @(posedge clk)
+begin
+    $display("state=%d din=%d dout=%d", dut.state, din, dout);
+end
 
 endmodule
